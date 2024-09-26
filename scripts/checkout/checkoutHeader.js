@@ -1,11 +1,11 @@
 import { cart } from "../../data/cart.js"
+
 export function renderCheckoutHeader(){
-    let checkout = '';
     let cartQuantity = 0;
     cart.forEach((cartItem) => {
         cartQuantity += cartItem.quantity;
     })
-    checkout = `
+    const checkout = `
         <div class="header-content">
             <div class="checkout-header-left-section">
             <a href="amazon.html">
@@ -23,7 +23,7 @@ export function renderCheckoutHeader(){
             <img src="images/icons/checkout-lock-icon.png">
             </div>
       </div>
-    `
+    `;
 
     document.querySelector('.js-checkout-header').innerHTML = checkout;
 }
