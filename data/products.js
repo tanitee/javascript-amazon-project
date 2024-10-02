@@ -107,9 +107,13 @@ export function loadProductsFetch() {
       return new Product(productDetails);
     })
     console.log('load products');
+    //if the request above has an error , it'll go to the catch
+  }).catch((error) => {
+    console.log('error loading products');
   });
   return promise;
 }
+
 /*loadProductsFetch().then(() => {
   console.log('next step')
 }); 
@@ -134,6 +138,11 @@ export function loadProducts(fun){
     console.log('load products');
     fun(); 
   })
+
+  //to handle errors eg . a wrong url , it'll display the message in the console
+  xhr.addEventListener('error', () => {
+    console.log('unexpected error . Please try again later');
+  });
   // .open takes two parameters , type of request to send and a url to send the request to
   xhr.open('GET', 'https://supersimplebackend.dev/products');
   // . send is asynchronus(it doesn't wait for a response before it sends)

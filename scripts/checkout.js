@@ -8,14 +8,23 @@ import { loadCart } from "../data/cart.js";
 import { Car } from "../data/car.js";
 
 async function loadPage(){
-    //await let us write asynchronous code like normal code . its a shortcut for loadProductsFetch().then(() =>{})
+    //to handle error is async await , you use try ctach. put the code that can cause an error in the try and catch to display a message
+    try{
+        //throw 'error1'
+        /*await let us write asynchronous code like normal code . its a shortcut for /////loadProductsFetch().then(() =>{})*/
     await loadProductsFetch();
 
-    await new Promise((resolve) => {
-        loadCart(() => {
-            resolve();
-        });
-    })
+    await new Promise((resolve, reject ) => {
+            loadCart(() => {
+                //reject('error3')
+                resolve('value3');
+            });
+        })
+
+    } catch (error) {
+        console.error('errorrr');
+    }
+    
     renderCheckoutHeader();
     renderOrderSummary();
     renderPaymentSummary();
