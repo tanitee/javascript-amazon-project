@@ -7,7 +7,23 @@ import { loadCart } from "../data/cart.js";
 //import '../data/backend-practice.js';
 import { Car } from "../data/car.js";
 
-Promise.all([
+async function loadPage(){
+    //await let us write asynchronous code like normal code . its a shortcut for loadProductsFetch().then(() =>{})
+    await loadProductsFetch();
+
+    await new Promise((resolve) => {
+        loadCart(() => {
+            resolve();
+        });
+    })
+    renderCheckoutHeader();
+    renderOrderSummary();
+    renderPaymentSummary();
+
+}
+loadPage()
+
+/*Promise.all([
    loadProductsFetch(),
     new Promise((resolve) => {
         loadCart(() => {
@@ -21,6 +37,7 @@ Promise.all([
     renderOrderSummary();
     renderPaymentSummary();
 });
+*/
 
 /*new Promise((resolve) => { 
     loadProducts(() =>{

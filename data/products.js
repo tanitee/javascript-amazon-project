@@ -52,7 +52,7 @@ class clothing extends Product{
   }
 }
 
-class Appliance  extends Product{
+class Appliance extends Product{
   instructionsLink;
   warrantyLink;
 
@@ -65,9 +65,9 @@ class Appliance  extends Product{
   extraInfoHTML(){
     super.extraInfoHTML();
     return `
-      <a href="${this.instructionsLink}">Instructions</a>
-      <a href="${this.warrantyLink}">Warranty</a>
-    `
+      <a href="${this.instructionsLink}" target="_blank"> Instructions </a>
+      <a href="${this.warrantyLink}" target="_blank"> Warranty </a>
+    `;
   }
 }
 
@@ -94,6 +94,7 @@ export let products = [];
 export function loadProductsFetch() {
   //makes an http request
   const promise = fetch('https://supersimplebackend.dev/products').then((response) => {
+    //to get data attched to the response
     return response.json();
   }).then((productsData) => {
     products = productsData.map((productDetails) =>{
@@ -111,7 +112,7 @@ export function loadProductsFetch() {
 }
 /*loadProductsFetch().then(() => {
   console.log('next step')
-});
+}); 
 */
 
 
